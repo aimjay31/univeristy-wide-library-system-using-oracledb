@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>UniArchive</h2>
+    <a href="/" class="{% if request.path == '/' %}active{% endif %}">Search</a>
+    <a href="/saved" class="{% if request.path == '/saved' %}active{% endif %}">Saved Books</a>
+
+    <div class="bottom-links">
+        <a href="/profile" class="{% if request.path == '/profile' %}active{% endif %}">Profile</a>
+        <a href="/settings" class="{% if request.path == '/settings' %}active{% endif %}">Settings</a>
+        <a href="/exit" class="exit">Exit</a>
+    </div>
+</div>
+
+<div class="main">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add a Book</title>
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            margin: 40px auto;
+            max-width: 600px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #4a6fa5;
+        }
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4a6fa5;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #385680;
+        }
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            color: #4a6fa5;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add a New Book</h1>
+    <form method="post">
+        <label for="title">Book Title</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="author">Author</label>
+        <input type="text" id="author" name="author" required>
+
+        <label for="year">Year Published</label>
+        <input type="number" id="year" name="year" required>
+
+        <label for="university">University</label>
+        <input type="text" id="university" name="university" required>
+
+        <button type="submit">Add Book</button>
+    </form>
+    <a href="/">← Back to Book List</a>
+</body>
+</html>

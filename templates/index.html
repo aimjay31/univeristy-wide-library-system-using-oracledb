@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Search Books</h1>
+
+<form method="GET" action="/" class="search-box">
+
+    <select name="sort" onchange="this.form.submit()">
+        <option value="">Sort By</option>
+        <option value="title">Title</option>
+        <option value="author">Author</option>
+        <option value="university">University</option>
+    </select>
+
+    <select name="filter">
+        <option value="title">Search by Title</option>
+        <option value="author">Search by Author</option>
+        <option value="university">Search by University</option>
+    </select>
+
+    <input type="text" name="keyword" placeholder="Enter search keyword">
+    <button type="submit">Search</button>
+</form>
+
+<br>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Year</th>
+        <th>University</th>
+    </tr>
+
+    {% for b in books %}
+    <tr>
+        <td>{{ b.title }}</td>
+        <td>{{ b.author }}</td>
+        <td>{{ b.year }}</td>
+        <td>{{ b.university }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
