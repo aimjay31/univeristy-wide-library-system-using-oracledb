@@ -1,0 +1,63 @@
+.settings-container {
+    max-width: 700px;
+    margin: 40px auto;
+}
+
+.settings-title {
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.settings-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.settings-card h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #3a3a3a;
+}
+
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    align-items: center;
+}
+
+.setting-value {
+    font-weight: bold;
+    color: #555;
+}
+
+.settings-select {
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.settings-btn {
+    padding: 8px 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #4b55ff;
+    color: white;
+    cursor: pointer;
+}
+
+.settings-btn:hover {
+    background: #3c47d8;
+}
+
+.settings-btn.danger {
+    background: #ff4b4b;
+}
+
+.settings-btn.danger:hover {
+    background: #d63a3a;
+}

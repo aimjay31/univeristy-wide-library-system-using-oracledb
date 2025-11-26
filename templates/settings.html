@@ -1,5 +1,74 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>Settings</h1>
-<p>No configurable settings yet.</p>
+
+<div class="settings-container">
+
+    <h1 class="settings-title">Settings</h1>
+
+    <!-- Profile Section -->
+    <div class="settings-card">
+        <h2>Profile</h2>
+        <div class="setting-row">
+            <span>Name</span>
+            <span class="setting-value">John Doe</span>
+        </div>
+        <div class="setting-row">
+            <span>Email</span>
+            <span class="setting-value">johndoe@gmail.com</span>
+        </div>
+        <div class="setting-row action">
+            <button class="settings-btn">Edit Profile</button>
+        </div>
+    </div>
+
+    <!-- Display Section -->
+    <div class="settings-card">
+        <h2>Display</h2>
+
+        <div class="setting-row">
+            <span>Theme</span>
+            <select class="settings-select">
+                <option>Light</option>
+                <option>Dark</option>
+                <option>System Default</option>
+            </select>
+        </div>
+
+        <div class="setting-row">
+            <span>Text Size</span>
+            <select class="settings-select">
+                <option>Small</option>
+                <option selected>Medium</option>
+                <option>Large</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Notifications Section -->
+    <div class="settings-card">
+        <h2>Notifications</h2>
+        <div class="setting-row">
+            <span>New Book Alerts</span>
+            <input type="checkbox" checked>
+        </div>
+        <div class="setting-row">
+            <span>Saved Book Updates</span>
+            <input type="checkbox" checked>
+        </div>
+        <div class="setting-row">
+            <span>Announcements</span>
+            <input type="checkbox">
+        </div>
+    </div>
+
+    <!-- Account Section -->
+    <div class="settings-card">
+        <h2>Account</h2>
+        <div class="setting-row action">
+            <button class="settings-btn danger">Delete Account</button>
+        </div>
+    </div>
+
+</div>
+
 {% endblock %}

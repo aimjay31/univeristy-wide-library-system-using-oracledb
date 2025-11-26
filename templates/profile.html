@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>User Profile</h1>
-<ul>
-    <li>Name: John Doe</li>
-    <li>Email: johndoe@gmail.com</li>
-    <li>Role: Student</li>
-</ul>
+<h1>Profile</h1>
+<p><strong>Name:</strong> {{ full_name }}</p>
+<p><strong>Username:</strong> {{ username }}</p>
+<p><strong>Email:</strong> {{ email }}</p>
+<p><strong>Role:</strong> {{ role }}</p>
+<a href="/logout">Logout</a>
 {% endblock %}

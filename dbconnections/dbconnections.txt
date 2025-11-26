@@ -1,0 +1,12 @@
+import oracledb
+
+DB_USER = "username"
+DB_PASSWORD = "password"
+DB_DSN = "localhost/FREE"
+
+def get_connection():
+    return oracledb.connect(
+        user=DB_USER,
+        password=DB_PASSWORD,
+        dsn=DB_DSN
+    )
