@@ -1,15 +1,8 @@
 
 from flask import Flask, render_template, request, redirect
-import oracledb
+from dbconnections.dbconnections import get_connection 
 
 app = Flask(__name__)
-
-DB_USER = "c##uni1"
-DB_PASSWORD = "user"
-DB_DSN = "localhost/FREE"
-
-def get_connection():
-    return oracledb.connect(user=DB_USER, password=DB_PASSWORD, dsn=DB_DSN)
 
 @app.route('/')
 def index():
@@ -39,7 +32,10 @@ def index():
         query += f" ORDER BY {sort}"
 
     cursor.execute(query, params)
-    books = [{"id": r[0], "title": r[1], "author": r[2], "year": r[3], "university": r[4]} for r in cursor]
+    books = [
+        {"id": r[0], "title": r[1], "author": r[2], "year": r[3], "university": r[4]}
+        for r in cursor
+    ]
 
     cursor.close()
     conn.close()
@@ -73,18 +69,23 @@ def add():
             "INSERT INTO university_books (title, author, year_published, university) VALUES (:1, :2, :3, :4)",
             (title, author, year, university)
         )
+
         conn.commit()
         cursor.close()
         conn.close()
         return redirect('/')
+
     return render_template('add.html')
+
 
 @app.route('/exit')
 def exit_page():
     return "You exited the system."
 
+
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 
 '''
