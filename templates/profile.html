@@ -1,9 +1,35 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>Profile</h1>
-<p><strong>Name:</strong> {{ full_name }}</p>
-<p><strong>Username:</strong> {{ username }}</p>
-<p><strong>Email:</strong> {{ email }}</p>
-<p><strong>Role:</strong> {{ role }}</p>
-<a href="/logout">Logout</a>
+
+<div class="profile-container">
+    <div class="profile-card">
+        <!-- Profile Picture -->
+        <div class="profile-picture">
+            <img src="{{ url_for('profile.profile_image', user_id=user_id) }}" alt="Profile Picture">
+        </div>
+
+        <!-- Name & Role -->
+        <h2 class="profile-name">{{ name }}</h2>
+        <p class="profile-role">{{ role }}</p>
+
+        <!-- Details -->
+        <div class="profile-details">
+            <div class="detail-row">
+                <span class="label">Name:</span>
+                <span class="value">{{ name }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Email:</span>
+                <span class="value">{{ email }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Role:</span>
+                <span class="value">{{ role }}</span>
+            </div>
+        </div>
+
+        <a href="{{ url_for('auth.logout') }}" class="logout-btn">Logout</a>
+    </div>
+</div>
+
 {% endblock %}

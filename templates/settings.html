@@ -10,11 +10,15 @@
         <h2>Profile</h2>
         <div class="setting-row">
             <span>Name</span>
-            <span class="setting-value">John Doe</span>
+            <span class="setting-value">{{ name }}</span>
         </div>
         <div class="setting-row">
             <span>Email</span>
-            <span class="setting-value">johndoe@gmail.com</span>
+            <span class="setting-value">{{ email }}</span>
+        </div>
+        <div class="setting-row">
+            <span>Role</span>
+            <span class="setting-value">{{ role }}</span>
         </div>
         <div class="setting-row action">
             <button class="settings-btn">Edit Profile</button>

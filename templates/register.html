@@ -3,40 +3,61 @@
 <head>
     <title>Register - UniArchive</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+    <style>
+        .profile-preview { width:120px; height:120px; border-radius:50%; object-fit:cover; display:block; margin:10px auto; border:3px solid #4a76fd; }
+        .upload-btn { text-align:center; padding:8px; border:1px dashed #888; border-radius:8px; cursor:pointer; margin-bottom:15px; }
+    </style>
 </head>
 <body>
-    <div class="auth-container">
-        <h1>Register</h1>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            <ul class="flashes">
-              {% for category, message in messages %}
-                <li class="{{ category }}">{{ message }}</li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-        {% endwith %}
+<div class="auth-container">
+    <h1>Create Your Account</h1>
 
-        <form method="POST">
-            <label>Name:</label>
-            <input type="text" name="name" required>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
 
-            <label>Email:</label>
-            <input type="email" name="email" required>
+    <form method="POST" enctype="multipart/form-data">
+        <img id="previewImg" src="{{ url_for('static', filename='default_profile.png') }}" class="profile-preview">
+        <label class="upload-btn">
+            Upload Profile Picture
+            <input type="file" name="profile_image" id="imageInput" accept="image/*" style="display:none;">
+        </label>
 
-            <label>Password:</label>
-            <input type="password" name="password" required>
+        <label>Name:</label>
+        <input type="text" name="name" required>
 
-            <label>Role:</label>
-            <select name="role" required>
-                <option value="member">Member</option>
-                <option value="librarian">Librarian</option>
-                <option value="admin">Admin</option>
-            </select>
+        <label>Email:</label>
+        <input type="email" name="email" required>
 
-            <button type="submit">Register</button>
-        </form>
-        <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a>.</p>
-    </div>
+        <label>Password:</label>
+        <input type="password" name="password" required>
+
+        <label>Role:</label>
+        <select name="role" required>
+            <option value="member">Member</option>
+            <option value="librarian">Librarian</option>
+            <option value="admin">Admin</option>
+        </select>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p>Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a>.</p>
+</div>
+
+<script>
+document.getElementById("imageInput").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        document.getElementById("previewImg").src = URL.createObjectURL(file);
+    }
+});
+</script>
 </body>
 </html>

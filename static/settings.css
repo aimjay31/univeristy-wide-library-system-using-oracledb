@@ -1,63 +1,141 @@
+/* --- Global Container --- */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+    color: #eee;
+    background: #1a1f2b;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* --- Firefly Orbs Background --- */
+body::before, body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(circle at 25% 30%, rgba(26,188,156,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 65%, rgba(52,152,219,0.1) 0%, transparent 60%),
+                radial-gradient(circle at 50% 80%, rgba(155,89,182,0.08) 0%, transparent 60%);
+    background-repeat: no-repeat;
+    animation: moveOrbs 30s linear infinite;
+}
+
+@keyframes moveOrbs {
+    0%   { background-position: 25% 30%, 70% 65%, 50% 80%; }
+    25%  { background-position: 30% 40%, 65% 60%, 55% 75%; }
+    50%  { background-position: 25% 35%, 70% 55%, 50% 70%; }
+    75%  { background-position: 20% 40%, 75% 65%, 45% 75%; }
+    100% { background-position: 25% 30%, 70% 65%, 50% 80%; }
+}
+
+/* --- Settings Container --- */
 .settings-container {
-    max-width: 700px;
-    margin: 40px auto;
+    max-width: 720px;
+    margin: 50px auto;
+    z-index: 1;
+    position: relative;
 }
 
+/* --- Title --- */
 .settings-title {
-    font-size: 32px;
-    margin-bottom: 25px;
+    font-size: 34px;
+    margin-bottom: 30px;
+    color: #1abc9c;
+    text-shadow: 0 0 6px rgba(26,188,156,0.7);
 }
 
+/* --- Card --- */
 .settings-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 25px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    background: rgba(26, 32, 44, 0.85);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(26,188,156,0.3);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
+.settings-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(26,188,156,0.6);
+}
+
+/* --- Card Headings --- */
 .settings-card h2 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: #3a3a3a;
+    font-size: 22px;
+    margin-bottom: 18px;
+    color: #52b3d9;
+    text-shadow: 0 0 4px rgba(26,188,156,0.5);
 }
 
+/* --- Setting Rows --- */
 .setting-row {
     display: flex;
     justify-content: space-between;
-    margin: 10px 0;
+    margin: 12px 0;
     align-items: center;
 }
 
+/* --- Values & Inputs --- */
 .setting-value {
     font-weight: bold;
-    color: #555;
+    color: #eee;
 }
 
 .settings-select {
-    padding: 6px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(26,188,156,0.5);
+    background: rgba(255,255,255,0.05);
+    color: #eee;
+    outline: none;
+    transition: 0.3s;
 }
 
+.settings-select:hover,
+.settings-select:focus {
+    box-shadow: 0 0 8px #1abc9c;
+    border-color: #1abc9c;
+}
+
+/* --- Buttons --- */
 .settings-btn {
-    padding: 8px 15px;
-    margin-top: 10px;
+    padding: 10px 20px;
+    margin-top: 12px;
     border: none;
-    border-radius: 8px;
-    background: #4b55ff;
-    color: white;
+    border-radius: 12px;
+    font-weight: bold;
     cursor: pointer;
+    transition: 0.3s ease;
+    background: linear-gradient(135deg, #1abc9c, #16a085);
+    color: #1a1f2b;
+    box-shadow: 0 4px 12px rgba(26,188,156,0.5);
 }
 
 .settings-btn:hover {
-    background: #3c47d8;
+    background: linear-gradient(135deg, #16a085, #1abc9c);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(26,188,156,0.7);
 }
 
+/* --- Danger Buttons --- */
 .settings-btn.danger {
-    background: #ff4b4b;
+    background: linear-gradient(135deg, #ff4b4b, #e84118);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(255,75,75,0.5);
 }
 
 .settings-btn.danger:hover {
-    background: #d63a3a;
+    background: linear-gradient(135deg, #e84118, #ff4b4b);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255,75,75,0.7);
 }
