@@ -1,0 +1,134 @@
+/* -----------------------
+   Table Styles
+-------------------------*/
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 15px;
+    background: #ffffff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.admin-table thead tr {
+    background: #f0f0f0;
+    text-align: left;
+}
+
+.admin-table th, .admin-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ccc;
+}
+
+.admin-table tbody tr:nth-child(even) {
+    background: #fafafa;
+}
+
+.admin-table tbody tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+.admin-table tbody tr:hover {
+    background: #e8f0fe;
+}
+
+/* -----------------------
+   Button Styles (All buttons unified)
+-------------------------*/
+.table-btn {
+    padding: 6px 12px;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 6px;
+    transition: background 0.2s;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.table-btn.view {
+    background: #1976d2;
+}
+
+.table-btn.view:hover {
+    background: #1565c0;
+}
+
+.table-btn.edit {
+    background: #388e3c;
+}
+
+.table-btn.edit:hover {
+    background: #2e7d32;
+}
+
+.table-btn.delete {
+    background: #d32f2f;
+}
+
+.table-btn.delete:hover {
+    background: #b71c1c;
+}
+
+/* Ensure form button matches <a> buttons */
+.table-btn.delete:focus {
+    outline: none;
+}
+
+/* -----------------------
+   Search Bar Styles
+-------------------------*/
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.search-bar input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search-bar select {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    min-width: 150px;
+}
+
+.search-bar button {
+    padding: 10px 18px;
+    background: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.search-bar button:hover {
+    background: #1565c0;
+}
+
+/* -----------------------
+   Responsive
+-------------------------*/
+@media screen and (max-width: 768px) {
+    .search-bar {
+        flex-direction: column;
+    }
+    
+    .search-bar input[type="text"], .search-bar select, .search-bar button {
+        width: 100%;
+    }
+    
+    .table-btn {
+        margin-bottom: 6px;
+    }
+}

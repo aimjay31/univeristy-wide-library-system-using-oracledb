@@ -1,6 +1,6 @@
 from flask import Flask, session, redirect, url_for, request
-from routes import auth, profile, books, settings
-from routes import auth, profile, books, settings, admin
+from routes import auth, profile, books, settings, admin, librarian, user_library
+
 
 app = Flask(__name__)
 app.secret_key = "supersecretkey"  # change to env var in production
@@ -11,6 +11,8 @@ app.register_blueprint(profile.bp)
 app.register_blueprint(books.bp)
 app.register_blueprint(settings.bp)
 app.register_blueprint(admin.bp)
+app.register_blueprint(librarian.bp)
+app.register_blueprint(user_library.bp)
 
 # ----------------------
 # PROTECT ROUTES

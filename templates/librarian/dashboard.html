@@ -1,0 +1,67 @@
+{% extends "librarian/librarian_layout.html" %}
+
+{% block content %}
+<h2>Librarian Dashboard</h2>
+<p>Manage all university books below.</p>
+
+<!-- ========================
+     SEARCH BAR
+========================= -->
+<form action="{{ url_for('librarian.search') }}" method="GET" class="search-bar">
+    <input type="text" name="keyword" placeholder="Search..." value="{{ keyword|default('') }}">
+    
+    <select name="filter">
+        <option value="title" {% if filter_by=='title' %}selected{% endif %}>Title</option>
+        <option value="author" {% if filter_by=='author' %}selected{% endif %}>Author</option>
+        <option value="university" {% if filter_by=='university' %}selected{% endif %}>University</option>
+        <option value="department" {% if filter_by=='department' %}selected{% endif %}>Department</option>
+    </select>
+
+    <button type="submit" class="table-btn view">Search</button>
+</form>
+
+<!-- ========================
+     BOOKS TABLE
+========================= -->
+<table class="admin-table">
+    <thead>
+        <tr>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>University</th>
+            <th>Department</th>
+            <th>Year</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% if books %}
+            {% for book in books %}
+            <tr>
+                <td>{{ book[0] }}</td>
+                <td>{{ book[1] }}</td>
+                <td>{{ book[2] }}</td>
+                <td>{{ book[3] }}</td>
+                <td>{{ book[4] }}</td>
+                <td>{{ book[5] }}</td>
+                <td>
+                    <a href="{{ url_for('librarian.view_book', book_id=book[0]) }}" class="table-btn view">View</a>
+                    <a href="{{ url_for('librarian.edit_book', book_id=book[0]) }}" class="table-btn edit">Edit</a>
+                    <form action="{{ url_for('librarian.delete_book', book_id=book[0]) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this book?');">
+                        <button type="submit" class="table-btn delete">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="7" style="text-align:center; padding:20px; color:#777;">
+                    No books found.
+                </td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "librarian/librarian_layout.html" %}
+
+{% block content %}
+<h2>Add New Manuscript</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    <label>Title:</label>
+    <input type="text" name="title" required>
+
+    <label>Author:</label>
+    <input type="text" name="author" required>
+
+    <label>University:</label>
+    <input type="text" name="university" required>
+
+    <label>Department:</label>
+    <input type="text" name="department" required>
+
+    <label>Year Published:</label>
+    <input type="number" name="year_published" required>
+
+    <label>Upload PDF:</label>
+    <input type="file" name="pdf_file" accept="application/pdf" required>
+
+    <button type="submit">Add Manuscript</button>
+</form>
+{% endblock %}

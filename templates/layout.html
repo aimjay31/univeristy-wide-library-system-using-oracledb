@@ -15,8 +15,10 @@
 <div class="sidebar">
     <h2>UniArchive</h2>
     <a href="/" class="{% if request.path == '/' %}active{% endif %}">Search</a>
-    <a href="/saved" class="{% if request.path == '/saved' %}active{% endif %}">Your Library</a>
-
+    <a href="{{ url_for('user_library.my_library') }}"
+    class="{% if request.path == url_for('user_library.my_library') %}active{% endif %}">
+        Your Library
+    </a>
     <div class="bottom-links">
         <a href="/profile" class="{% if request.path == '/profile' %}active{% endif %}">Profile</a>
         <a href="/settings" class="{% if request.path == '/settings' %}active{% endif %}">Settings</a>

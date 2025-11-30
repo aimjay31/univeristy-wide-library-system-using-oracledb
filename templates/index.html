@@ -47,7 +47,9 @@
         <td>{{ b.department }}</td>
         <td>{{ b.year_published }}</td>
         <td>
-            <button>Add To Library</button>
+            <form method="POST" action="{{ url_for('user_library.add_to_library', book_id=b.book_id) }}">
+                <button type="submit">Add To Library</button>
+            </form>
         </td>
     </tr>
     {% endfor %}

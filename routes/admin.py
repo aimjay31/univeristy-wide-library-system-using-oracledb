@@ -122,7 +122,7 @@ def update_role(user_id):
 
     new_role = request.form.get("role")
 
-    if new_role not in ["admin", "user"]:
+    if new_role not in ["admin", "member", "librarian"]:
         flash("Invalid role.", "error")
         return redirect(url_for("admin.admin_dashboard"))
 

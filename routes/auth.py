@@ -102,6 +102,17 @@ def login():
         if role == "admin":
             flash("Administrator accounts must log in through the admin login page.", "error")
             return redirect(url_for("admin.admin_login"))
+        
+        if role == "librarian":
+            # Redirect librarian to their dashboard
+            session["user_id"] = int(user_id)
+            session["name"] = name
+            session["email"] = _email
+            session["role"] = role
+
+            flash(f"Welcome, Librarian {name}!", "success")
+            return redirect(url_for("librarian.dashboard"))
+
 
         # Password validation
         if check_password_hash(password_hash, password):
