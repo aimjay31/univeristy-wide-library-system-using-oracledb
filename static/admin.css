@@ -1,0 +1,171 @@
+/* Container */
+.admin-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    color: #024853;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+/* Title */
+.admin-title {
+    font-size: 32px;
+    margin-bottom: 25px;
+    color: #1abc9c;
+    text-align: center;
+}
+
+/* Search Box */
+.admin-search {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 12px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.25);
+    color: #024853;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.search-input:focus {
+    background: rgba(26, 188, 156, 0.2);
+    box-shadow: 0 0 10px #1abc9c;
+}
+
+.search-btn {
+    padding: 10px 20px;
+    background: #1abc9c;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.search-btn:hover {
+    background: #16a085;
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Table */
+.admin-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.admin-table th, .admin-table td {
+    padding: 14px;
+    font-size: 14px;
+    color: #024853;  /* darker text for readability */
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.admin-table th {
+    background: rgba(26, 188, 156, 0.25);
+    font-weight: bold;
+    color: #fff;
+}
+
+.admin-table tr:hover td {
+    background: rgba(26, 188, 156, 0.2);
+    transition: 0.2s;
+}
+
+/* Role Update Form */
+.role-form {
+    display: inline-flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.role-select {
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.2);
+    background: rgba(255,255,255,0.3);
+    color: #024853;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.role-select:focus {
+    background: rgba(26, 188, 156, 0.2);
+    box-shadow: 0 0 6px #1abc9c;
+}
+
+.update-btn {
+    padding: 6px 12px;
+    border: none;
+    background: #1abc9c;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.update-btn:hover {
+    background: #16a085;
+    transform: translateY(-1px) scale(1.05);
+}
+
+/* Delete Button */
+.delete-btn {
+    padding: 6px 12px;
+    border: none;
+    background: #e74c3c;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 5px;
+    transition: 0.3s;
+}
+
+.delete-btn:hover {
+    background: #c0392b;
+    transform: translateY(-1px) scale(1.05);
+}
+
+/* Logout button */
+.exit {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 10px;
+    background: #1abc9c;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.exit:hover {
+    background: #16a085;
+    transform: translateY(-1px) scale(1.05);
+}

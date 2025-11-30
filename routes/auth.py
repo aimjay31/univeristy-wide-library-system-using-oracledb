@@ -68,7 +68,7 @@ def register():
 
 
 # ----------------------
-# LOGIN
+# LOGIN (USER ONLY)
 # ----------------------
 @bp.route("/login", methods=["GET", "POST"])
 def login():
@@ -98,19 +98,27 @@ def login():
 
         user_id, name, _email, password_hash, role = user
 
+        # ❗ STOP ADMINS HERE
+        if role == "admin":
+            flash("Administrator accounts must log in through the admin login page.", "error")
+            return redirect(url_for("admin.admin_login"))
+
+        # Password validation
         if check_password_hash(password_hash, password):
-            # Save essential info in session
             session["user_id"] = int(user_id)
             session["name"] = name
             session["email"] = _email
             session["role"] = role
+
             flash(f"Welcome, {name}!", "success")
             return redirect(url_for("profile.profile"))
+
         else:
             flash("Incorrect password.", "error")
             return render_template("login.html")
 
     return render_template("login.html")
+
 
 
 # ----------------------
