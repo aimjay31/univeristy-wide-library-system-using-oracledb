@@ -23,16 +23,16 @@ def register():
         name = request.form.get("name", "").strip()
         email = request.form.get("email", "").strip().lower()
         password = request.form.get("password", "")
-        role = request.form.get("role", "member")
         profile_file = request.files.get("profile_image")
         image_bytes = profile_file.read() if profile_file and profile_file.filename else None
 
         # Basic validation
-        if not (name and email and password and role):
+        if not (name and email and password):
             flash("Please fill in all required fields.", "error")
             return render_template("register.html")
 
         password_hash = generate_password_hash(password)
+        role = "member"  # Force all new users to be 'member'
 
         conn = get_connection()
         cursor = conn.cursor()

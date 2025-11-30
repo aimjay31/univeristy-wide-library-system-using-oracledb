@@ -10,12 +10,16 @@
         <option value="title">Title</option>
         <option value="author">Author</option>
         <option value="university">University</option>
+        <option value="department">Department</option>
+        <option value="year_published">Year Published</option>
     </select>
 
     <select name="filter">
         <option value="title">Search by Title</option>
         <option value="author">Search by Author</option>
         <option value="university">Search by University</option>
+        <option value="department">Search by Department</option>
+        <option value="year_published">Search by Year</option>
     </select>
 
     <input type="text" name="keyword" placeholder="Enter search keyword">
@@ -25,19 +29,23 @@
 <br>
 <table>
     <tr>
+        <th>Book ID</th>
         <th>Title</th>
         <th>Author</th>
-        <th>Year</th>
         <th>University</th>
+        <th>Department</th>
+        <th>Year Published</th>
         <th>Actions</th>
     </tr>
 
     {% for b in books %}
     <tr>
+        <td>{{ b.book_id }}</td>
         <td>{{ b.title }}</td>
         <td>{{ b.author }}</td>
-        <td>{{ b.year }}</td>
         <td>{{ b.university }}</td>
+        <td>{{ b.department }}</td>
+        <td>{{ b.year_published }}</td>
         <td>
             <button>Add To Library</button>
         </td>
