@@ -1,18 +1,14 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from dbconnections.dbconnections import get_connection
+from dbconnections.dbconnections import get_connection, get_remote_connection
 
 bp = Blueprint("books", __name__)
 
-@bp.route("/")
-def index():
-    search_type = request.args.get("filter")
-    keyword = request.args.get("keyword")
-    sort = request.args.get("sort")
-
-    conn = get_connection()
+def query_books(conn, source_name, search_type=None, keyword=None, sort=None):
+    """
+    Execute book query on a given connection and return list of dictionaries.
+    Adds a 'source' field to indicate local or remote DB.
+    """
     cursor = conn.cursor()
-    
-    # Select all fields except availability
     query = """
         SELECT book_id, title, author, university, department, year_published
         FROM university_books
@@ -34,14 +30,11 @@ def index():
         params = [keyword_param]
 
     if sort:
-        # Safety: allow only specific sort columns
         allowed_sort = ["book_id", "title", "author", "university", "department", "year_published"]
         if sort in allowed_sort:
             query += f" ORDER BY {sort}"
 
     cursor.execute(query, params)
-    
-    # Return all fields in dictionary
     books = [
         {
             "book_id": r[0],
@@ -49,13 +42,44 @@ def index():
             "author": r[2],
             "university": r[3],
             "department": r[4],
-            "year_published": r[5]
-        } for r in cursor
+            "year_published": r[5],
+            "source": source_name  # <--- add this
+        }
+        for r in cursor
     ]
-
     cursor.close()
-    conn.close()
-    return render_template("index.html", books=books)
+    return books
+
+@bp.route("/")
+def index():
+    search_type = request.args.get("filter")
+    keyword = request.args.get("keyword")
+    sort = request.args.get("sort")
+    db_source = request.args.get("db_source", "local")  # local, remote, all
+
+    all_books = []
+
+    # Query local DB
+    if db_source in ["local", "all"]:
+        try:
+            conn = get_connection()
+            all_books.extend(query_books(conn, source_name="Local", search_type=search_type, keyword=keyword, sort=sort))
+            conn.close()
+        except Exception as e:
+            flash(f"Failed to fetch local books: {e}", "error")
+
+    # Query remote DB
+    if db_source in ["remote", "all"]:
+        try:
+            conn = get_remote_connection()
+            all_books.extend(query_books(conn, source_name="Remote", search_type=search_type, keyword=keyword, sort=sort))
+            conn.close()
+        except Exception as e:
+            flash(f"Failed to fetch remote books: {e}", "error")
+
+    return render_template("index.html", books=all_books, db_source=db_source)
+
+
 
 @bp.route("/add", methods=["GET", "POST"])
 def add():
@@ -65,8 +89,9 @@ def add():
         year = request.form["year"]
         university = request.form["university"]
         department = request.form["department"]
+        db_source = request.form.get("db_source", "local")  # where to add
 
-        conn = get_connection()
+        conn = get_connection() if db_source == "local" else get_remote_connection()
         cursor = conn.cursor()
         cursor.execute(
             """
@@ -78,11 +103,7 @@ def add():
         conn.commit()
         cursor.close()
         conn.close()
-        flash("Book added successfully!", "success")
+        flash(f"Book added successfully to {db_source} database!", "success")
         return redirect(url_for("books.index"))
 
     return render_template("add.html")
-
-@bp.route("/saved")
-def saved():
-    return render_template("saved.html")

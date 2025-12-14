@@ -1,94 +1,59 @@
-/* --- Global Container --- */
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Roboto, sans-serif;
-    min-height: 100vh;
-    color: #eee;
-    background: #1a1f2b;
-    overflow-x: hidden;
-    position: relative;
-}
-
-/* --- Firefly Orbs Background --- */
-body::before, body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    background: radial-gradient(circle at 25% 30%, rgba(26,188,156,0.15) 0%, transparent 50%),
-                radial-gradient(circle at 70% 65%, rgba(52,152,219,0.1) 0%, transparent 60%),
-                radial-gradient(circle at 50% 80%, rgba(155,89,182,0.08) 0%, transparent 60%);
-    background-repeat: no-repeat;
-    animation: moveOrbs 30s linear infinite;
-}
-
-@keyframes moveOrbs {
-    0%   { background-position: 25% 30%, 70% 65%, 50% 80%; }
-    25%  { background-position: 30% 40%, 65% 60%, 55% 75%; }
-    50%  { background-position: 25% 35%, 70% 55%, 50% 70%; }
-    75%  { background-position: 20% 40%, 75% 65%, 45% 75%; }
-    100% { background-position: 25% 30%, 70% 65%, 50% 80%; }
-}
-
-/* --- Settings Container --- */
+/* ===============================
+   SETTINGS PAGE LAYOUT
+================================ */
 .settings-container {
     max-width: 720px;
     margin: 50px auto;
-    z-index: 1;
     position: relative;
+    z-index: 1;
 }
 
 /* --- Title --- */
 .settings-title {
     font-size: 34px;
     margin-bottom: 30px;
-    color: #1abc9c;
+    color: #0f735f;
     text-shadow: 0 0 6px rgba(26,188,156,0.7);
 }
 
 /* --- Card --- */
 .settings-card {
-    background: rgba(26, 32, 44, 0.85);
+    background: rgba(26, 188, 156, 0.25); /* Turquoise glass */
+    backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 25px;
     margin-bottom: 30px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-    backdrop-filter: blur(10px);
+
+    box-shadow: 0 12px 36px rgba(0,0,0,0.45);
     border: 1px solid rgba(26,188,156,0.3);
-    position: relative;
-    overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .settings-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(26,188,156,0.6);
+    box-shadow: 0 16px 40px rgba(26,188,156,0.6);
 }
 
 /* --- Card Headings --- */
 .settings-card h2 {
-    font-size: 22px;
+    font-size: 24px;
     margin-bottom: 18px;
-    color: #52b3d9;
-    text-shadow: 0 0 4px rgba(26,188,156,0.5);
+    color: #ffffff;
+    text-shadow: 0 0 6px #16a085;
 }
 
 /* --- Setting Rows --- */
 .setting-row {
     display: flex;
     justify-content: space-between;
-    margin: 12px 0;
     align-items: center;
+    margin: 12px 0;
 }
 
 /* --- Values & Inputs --- */
 .setting-value {
     font-weight: bold;
-    color: #eee;
+    color: #fff;
 }
 
 .settings-select {
@@ -96,15 +61,15 @@ body::before, body::after {
     border-radius: 8px;
     border: 1px solid rgba(26,188,156,0.5);
     background: rgba(255,255,255,0.05);
-    color: #eee;
+    color: #fff;
     outline: none;
     transition: 0.3s;
 }
 
 .settings-select:hover,
 .settings-select:focus {
-    box-shadow: 0 0 8px #1abc9c;
     border-color: #1abc9c;
+    box-shadow: 0 0 8px #1abc9c;
 }
 
 /* --- Buttons --- */
@@ -115,27 +80,44 @@ body::before, body::after {
     border-radius: 12px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s ease;
+
     background: linear-gradient(135deg, #1abc9c, #16a085);
     color: #1a1f2b;
-    box-shadow: 0 4px 12px rgba(26,188,156,0.5);
+
+    box-shadow: 0 6px 20px rgba(26,188,156,0.5);
+    transition: 0.3s ease;
 }
 
 .settings-btn:hover {
     background: linear-gradient(135deg, #16a085, #1abc9c);
     transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 6px 20px rgba(26,188,156,0.7);
+    box-shadow: 0 8px 25px rgba(26,188,156,0.7);
 }
 
 /* --- Danger Buttons --- */
 .settings-btn.danger {
     background: linear-gradient(135deg, #ff4b4b, #e84118);
     color: #fff;
-    box-shadow: 0 4px 12px rgba(255,75,75,0.5);
 }
 
 .settings-btn.danger:hover {
     background: linear-gradient(135deg, #e84118, #ff4b4b);
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 6px 20px rgba(255,75,75,0.7);
+    box-shadow: 0 8px 25px rgba(255,75,75,0.7);
+}
+
+.delete-account-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 14px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(231,76,60,0.5);
+    transition: 0.3s;
+}
+
+.delete-account-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(231,76,60,0.7);
 }

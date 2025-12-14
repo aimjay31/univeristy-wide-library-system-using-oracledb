@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="edit-container">
+    <div class="glass-card edit-card">
+        <h2>Edit Profile</h2>
+        <form method="POST">
+            <div class="form-row">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" value="{{ name }}" required>
+            </div>
+            <div class="form-row">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="{{ email }}" required>
+            </div>
+            <div class="form-row submit-row">
+                <button type="submit" class="edit-btn">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

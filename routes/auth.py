@@ -122,7 +122,7 @@ def login():
             session["role"] = role
 
             flash(f"Welcome, {name}!", "success")
-            return redirect(url_for("profile.profile"))
+            return redirect(url_for("books.index"))
 
         else:
             flash("Incorrect password.", "error")

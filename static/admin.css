@@ -1,34 +1,51 @@
-/* Container */
+/* ===============================
+   BODY & BACKGROUND
+================================ */
+body {
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('/static/background.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #024853;
+}
+
+/* ===============================
+   ADMIN CONTAINER
+================================ */
 .admin-container {
     max-width: 1000px;
     margin: 40px auto;
-    font-family: 'Segoe UI', Roboto, sans-serif;
-    color: #024853;
     padding: 20px;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(12px);
     border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
 }
 
-/* Title */
+/* ===============================
+   TITLE
+================================ */
 .admin-title {
     font-size: 32px;
     margin-bottom: 25px;
-    color: #1abc9c;
+    color: #0a4a3d;
     text-align: center;
+    text-shadow: 0 0 6px rgba(26,188,156,0.6);
 }
 
-/* Search Box */
+/* ===============================
+   SEARCH BOX
+================================ */
 .admin-search {
     display: flex;
     gap: 10px;
     margin-bottom: 25px;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
     padding: 12px;
     border-radius: 12px;
     backdrop-filter: blur(10px);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
 }
 
 .search-input {
@@ -64,22 +81,24 @@
     transform: translateY(-2px) scale(1.05);
 }
 
-/* Table */
+/* ===============================
+   TABLE
+================================ */
 .admin-table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    background: rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.08);
     border-radius: 12px;
     overflow: hidden;
     backdrop-filter: blur(12px);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
 }
 
 .admin-table th, .admin-table td {
     padding: 14px;
     font-size: 14px;
-    color: #024853;  /* darker text for readability */
+    color: #024853;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     text-align: center;
 }
@@ -95,7 +114,9 @@
     transition: 0.2s;
 }
 
-/* Role Update Form */
+/* ===============================
+   ROLE UPDATE FORM
+================================ */
 .role-form {
     display: inline-flex;
     gap: 5px;
@@ -134,7 +155,9 @@
     transform: translateY(-1px) scale(1.05);
 }
 
-/* Delete Button */
+/* ===============================
+   DELETE BUTTON
+================================ */
 .delete-btn {
     padding: 6px 12px;
     border: none;
@@ -152,12 +175,14 @@
     transform: translateY(-1px) scale(1.05);
 }
 
-/* Logout button */
+/* ===============================
+   LOGOUT BUTTON
+================================ */
 .exit {
     display: inline-block;
     padding: 8px 20px;
     border-radius: 10px;
-    background: #1abc9c;
+    background: #8e1313;
     color: #fff;
     font-weight: bold;
     text-decoration: none;

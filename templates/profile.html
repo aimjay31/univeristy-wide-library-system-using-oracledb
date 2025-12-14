@@ -3,32 +3,53 @@
 
 <div class="profile-container">
     <div class="profile-card">
-        <!-- Profile Picture -->
-        <div class="profile-picture">
-            <img src="{{ url_for('profile.profile_image', user_id=user_id) }}" alt="Profile Picture">
+
+        <!-- TOP ROW -->
+        <div class="profile-top">
+
+            <!-- LEFT: DETAILS -->
+            <div class="glass-box profile-info">
+                <h2 class="profile-name">{{ name }}</h2>
+                <p class="profile-role">{{ role }}</p>
+
+                <div class="profile-details">
+                    <div class="detail-row">
+                        <span class="label">Name</span>
+                        <span class="value">{{ name }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Email</span>
+                        <span class="value">{{ email }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Role</span>
+                        <span class="value">{{ role }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: PROFILE + EDIT -->
+            <div class="right-column">
+                <!-- Profile Picture Card -->
+                <div class="profile-picture-card">
+                    <div class="profile-picture">
+                        <img src="{{ url_for('profile.profile_image', user_id=user_id) }}" alt="Profile Picture">
+                    </div>
+                </div>
+
+                <!-- Edit Profile Button Card -->
+                <div class="edit-profile-card">
+                    <a href="{{ url_for('profile.edit_profile') }}" class="edit-profile-btn">Edit Profile</a>
+                </div>
+            </div>
+
         </div>
 
-        <!-- Name & Role -->
-        <h2 class="profile-name">{{ name }}</h2>
-        <p class="profile-role">{{ role }}</p>
-
-        <!-- Details -->
-        <div class="profile-details">
-            <div class="detail-row">
-                <span class="label">Name:</span>
-                <span class="value">{{ name }}</span>
-            </div>
-            <div class="detail-row">
-                <span class="label">Email:</span>
-                <span class="value">{{ email }}</span>
-            </div>
-            <div class="detail-row">
-                <span class="label">Role:</span>
-                <span class="value">{{ role }}</span>
-            </div>
+        <!-- BOTTOM: LOGOUT -->
+        <div class="glass-box logout-box">
+            <a href="{{ url_for('auth.logout') }}" class="logout-btn">Logout</a>
         </div>
 
-        <a href="{{ url_for('auth.logout') }}" class="logout-btn">Logout</a>
     </div>
 </div>
 

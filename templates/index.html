@@ -1,57 +1,97 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<!-- Loading Overlay -->
+<div id="loading-overlay">
+    <div class="spinner"></div>
+</div>
+
 <h1>Search Manuscripts</h1>
 
 <form method="GET" action="/" class="search-box">
 
-    <select name="sort" onchange="this.form.submit()">
-        <option value="">Sort By</option>
-        <option value="title">Title</option>
-        <option value="author">Author</option>
-        <option value="university">University</option>
-        <option value="department">Department</option>
-        <option value="year_published">Year Published</option>
+    <!-- Sort dropdown -->
+    <label for="sort">Sort By:</label>
+    <select name="sort" id="sort" onchange="this.form.submit()">
+        <option value="">-- Select --</option>
+        <option value="title" {% if request.args.get('sort') == 'title' %}selected{% endif %}>Title</option>
+        <option value="author" {% if request.args.get('sort') == 'author' %}selected{% endif %}>Author</option>
+        <option value="university" {% if request.args.get('sort') == 'university' %}selected{% endif %}>University</option>
+        <option value="department" {% if request.args.get('sort') == 'department' %}selected{% endif %}>Department</option>
+        <option value="year_published" {% if request.args.get('sort') == 'year_published' %}selected{% endif %}>Year Published</option>
     </select>
 
-    <select name="filter">
-        <option value="title">Search by Title</option>
-        <option value="author">Search by Author</option>
-        <option value="university">Search by University</option>
-        <option value="department">Search by Department</option>
-        <option value="year_published">Search by Year</option>
+    <!-- Filter dropdown -->
+    <label for="filter">Search By:</label>
+    <select name="filter" id="filter">
+        <option value="title" {% if request.args.get('filter') == 'title' %}selected{% endif %}>Title</option>
+        <option value="author" {% if request.args.get('filter') == 'author' %}selected{% endif %}>Author</option>
+        <option value="university" {% if request.args.get('filter') == 'university' %}selected{% endif %}>University</option>
+        <option value="department" {% if request.args.get('filter') == 'department' %}selected{% endif %}>Department</option>
+        <option value="year_published" {% if request.args.get('filter') == 'year_published' %}selected{% endif %}>Year Published</option>
     </select>
 
-    <input type="text" name="keyword" placeholder="Enter search keyword">
+    <!-- Database source dropdown -->
+    <label for="db_source">University Source:</label>
+    <select name="db_source" id="db_source" onchange="this.form.submit()">
+        <option value="local" {% if db_source == 'local' %}selected{% endif %}>Local Universities</option>
+        <option value="remote" {% if db_source == 'remote' %}selected{% endif %}>Remote Universities</option>
+        <option value="all" {% if db_source == 'all' %}selected{% endif %}>All Universities</option>
+    </select>
+
+    <!-- Keyword input -->
+    <input type="text" name="keyword" placeholder="Enter search keyword" value="{{ request.args.get('keyword', '') }}">
     <button type="submit">Search</button>
 </form>
 
 <br>
-<table>
-    <tr>
-        <th>Book ID</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>University</th>
-        <th>Department</th>
-        <th>Year Published</th>
-        <th>Actions</th>
-    </tr>
 
-    {% for b in books %}
-    <tr>
-        <td>{{ b.book_id }}</td>
-        <td>{{ b.title }}</td>
-        <td>{{ b.author }}</td>
-        <td>{{ b.university }}</td>
-        <td>{{ b.department }}</td>
-        <td>{{ b.year_published }}</td>
-        <td>
-            <form method="POST" action="{{ url_for('user_library.add_to_library', book_id=b.book_id) }}">
-                <button type="submit">Add To Library</button>
-            </form>
-        </td>
-    </tr>
-    {% endfor %}
+<!-- Books Table -->
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>University</th>
+            <th>Department</th>
+            <th>Year Published</th>
+            <th>Source</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if books %}
+            {% for b in books %}
+            <tr>
+                <td>{{ b.title }}</td>
+                <td>{{ b.author }}</td>
+                <td>{{ b.university }}</td>
+                <td>{{ b.department }}</td>
+                <td>{{ b.year_published }}</td>
+                <td>{{ b.source if b.source else 'Local/Remote' }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('user_library.add_to_library', book_id=b.book_id) }}">
+                        <input type="hidden" name="source" value="{{ b.source|default('Local') }}">
+                            <button type="submit" class="add-btn">
+                                <img src="{{ url_for('static', filename='button.svg') }}" alt="Add To Library">
+                            </button>
+                    </form>
+
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="8" style="text-align:center;">No books found.</td>
+            </tr>
+        {% endif %}
+    </tbody>
 </table>
+<script>
+    window.addEventListener("load", function() {
+        const overlay = document.getElementById("loading-overlay");
+        overlay.style.display = "none"; // hide overlay
+    });
+</script>
+
 {% endblock %}

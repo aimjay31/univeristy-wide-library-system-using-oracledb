@@ -50,3 +50,26 @@ CREATE TABLE user_library (
     CONSTRAINT fk_user_library_book FOREIGN KEY (book_id)
         REFERENCES university_books(book_id)
 );
+
+
+
+
+
+
+
+
+BUTANG NI UNYA
+
+CREATE TABLE user_library (
+    user_id       NUMBER       NOT NULL,
+    book_id       NUMBER       NOT NULL,
+    title         VARCHAR2(255),
+    author        VARCHAR2(255),
+    university    VARCHAR2(255),
+    department    VARCHAR2(255),
+    year_published NUMBER,
+    pdf_file      BLOB,
+    added_at      DATE,
+    source        VARCHAR2(10),  -- 'Local' or 'Remote'
+    CONSTRAINT user_library_pk PRIMARY KEY (user_id, book_id)
+);

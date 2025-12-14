@@ -1,38 +1,117 @@
-/* --- Container --- */
+/* ===============================
+   PROFILE LAYOUT
+================================ */
 .profile-container {
     display: flex;
     justify-content: center;
-    margin-top: 50px;
-    position: relative;
-    z-index: 1;
+    margin-top: 60px;
 }
 
-/* --- Card --- */
 .profile-card {
-    width: 380px;
-    padding: 30px;
-    border-radius: 20px;
-    background: rgba(255,255,255,0.05);
+    width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* ===============================
+   GLASS BOX (Reusable)
+================================ */
+.glass-box {
+    background: rgba(255,255,255,0.08);
     backdrop-filter: blur(10px);
-    box-shadow: 0 12px 36px rgba(0,0,0,0.5);
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.45);
 }
 
-.profile-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 18px 48px rgba(26,188,156,0.6);
+/* ===============================
+   TOP SECTION
+================================ */
+.profile-top {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
 }
 
-/* --- Profile Picture --- */
+/* ===============================
+   LEFT: DETAILS CARD
+================================ */
+.profile-info {
+    flex: 1;
+    padding: 20px;
+    background: rgba(26, 188, 156, 0.25);
+    backdrop-filter: blur(8px);
+    border-radius: 18px;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.45);
+}
+
+/* Name & Role */
+.profile-name {
+    font-size: 36px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 0 6px #16a085;
+    margin-bottom: 12px;
+}
+
+.profile-role {
+    font-size: 18px;
+    font-weight: bold;
+    color: #e0f7f4;
+    margin-bottom: 20px;
+    text-shadow: 0 0 4px #16a08560;
+}
+
+/* Detail rows */
+.profile-details .detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(255,255,255,0.2);
+}
+
+.label {
+    font-weight: bold;
+    color: #f0f0f0;
+}
+
+.value {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/* ===============================
+   RIGHT COLUMN: PROFILE + EDIT
+================================ */
+.right-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center horizontally */
+    gap: 12px;
+    width: 200px;
+}
+
+/* Profile Picture Card (Square) */
+.profile-picture-card {
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    background: rgba(26, 188, 156, 0.25);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.45);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .profile-picture {
-    width: 130px;
-    height: 130px;
-    margin: 0 auto 20px;
-    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
     overflow: hidden;
-    border: 4px solid #1abc9c;
-    transition: transform 0.3s, box-shadow 0.3s;
+    border: 3px solid #1abc9c;
 }
 
 .profile-picture img {
@@ -41,66 +120,55 @@
     object-fit: cover;
 }
 
-.profile-picture:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px #1abc9c80;
-}
+/* Edit Profile Button Card */
+.edit-profile-card {
+    width: 200px;
+    border-radius: 18px;
+    background: rgba(26, 188, 156, 0.25);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.45);
 
-/* --- Name & Role --- */
-.profile-name {
-    margin: 10px 0;
-    font-size: 26px;
-    font-weight: bold;
-    color: #1abc9c;
-    text-shadow: 0 0 6px #1abc9c60;
-}
-
-.profile-role {
-    font-size: 16px;
-    color: #16a085;
-    font-weight: bold;
-    margin-bottom: 25px;
-    text-shadow: 0 0 4px #16a08560;
-}
-
-/* --- Details List --- */
-.profile-details {
-    text-align: left;
-    margin-top: 20px;
-}
-
-.detail-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     padding: 12px 0;
-    border-bottom: 1px dashed rgba(255,255,255,0.2);
-    transition: background 0.3s;
 }
 
-.detail-row:hover {
-    background: rgba(26, 188, 156, 0.1);
-}
-
-.label {
+/* Edit Profile Button */
+.edit-profile-btn {
+    width: 90%;
+    padding: 10px 0;
+    background: #16a085;
+    color: #fff;
     font-weight: bold;
-    color: #eee;
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.3s ease;
 }
 
-.value {
-    color: #ddd;
+.edit-profile-btn:hover {
+    background: #1abc9c;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(26,188,156,0.6);
 }
 
-/* --- Logout Button --- */
+/* ===============================
+   BOTTOM: LOGOUT
+================================ */
+.logout-box {
+    text-align: center;
+}
+
 .logout-btn {
     display: inline-block;
-    margin-top: 30px;
-    padding: 12px 22px;
+    padding: 14px 30px;
     background: #e74c3c;
     color: #fff;
     text-decoration: none;
-    border-radius: 12px;
+    border-radius: 14px;
     font-weight: bold;
-    transition: 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    transition: 0.3s;
 }
 
 .logout-btn:hover {
@@ -109,27 +177,22 @@
     box-shadow: 0 0 20px rgba(231,76,60,0.6);
 }
 
-/* --- Firefly Orbs on Profile Page --- */
-body.profile-page::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    background: radial-gradient(circle at 20% 30%, rgba(26,188,156,0.2) 0%, transparent 50%),
-                radial-gradient(circle at 70% 60%, rgba(52,152,219,0.15) 0%, transparent 60%),
-                radial-gradient(circle at 50% 80%, rgba(155,89,182,0.1) 0%, transparent 60%);
-    background-repeat: no-repeat;
-    animation: moveOrbs 25s linear infinite;
+
+/* ===============================
+   GLASS BOX HOVER EFFECT
+================================ */
+.profile-info,
+.profile-picture-card,
+.edit-profile-card,
+.logout-box {
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
 }
 
-@keyframes moveOrbs {
-    0% { background-position: 20% 30%, 70% 60%, 50% 80%; }
-    25% { background-position: 25% 40%, 65% 55%, 55% 75%; }
-    50% { background-position: 20% 35%, 70% 50%, 50% 70%; }
-    75% { background-position: 15% 40%, 75% 65%, 45% 75%; }
-    100% { background-position: 20% 30%, 70% 60%, 50% 80%; }
+.profile-info:hover,
+.profile-picture-card:hover,
+.edit-profile-card:hover,
+.logout-box:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 18px 48px rgba(26, 188, 156, 0.6);
+    background: rgba(26, 188, 156, 0.35); /* slightly brighter glass */
 }

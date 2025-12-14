@@ -1,134 +1,391 @@
+/* ==============================
+   LIBRARIAN DASHBOARD - GRID STYLE
+================================= */
+
 /* -----------------------
-   Table Styles
+   BACKGROUND & FONT
 -------------------------*/
-.admin-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-size: 15px;
-    background: #ffffff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.admin-table thead tr {
-    background: #f0f0f0;
-    text-align: left;
-}
-
-.admin-table th, .admin-table td {
-    padding: 12px;
-    border-bottom: 1px solid #ccc;
-}
-
-.admin-table tbody tr:nth-child(even) {
-    background: #fafafa;
-}
-
-.admin-table tbody tr:nth-child(odd) {
-    background: #ffffff;
-}
-
-.admin-table tbody tr:hover {
-    background: #e8f0fe;
+body {
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background: url('../static/background.png') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    color: #fff;
 }
 
 /* -----------------------
-   Button Styles (All buttons unified)
+   MAIN CONTAINER
 -------------------------*/
-.table-btn {
-    padding: 6px 12px;
-    color: white;
-    border-radius: 4px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    margin-right: 6px;
-    transition: background 0.2s;
-    display: inline-block;
-    font-size: 14px;
-}
-
-.table-btn.view {
-    background: #1976d2;
-}
-
-.table-btn.view:hover {
-    background: #1565c0;
-}
-
-.table-btn.edit {
-    background: #388e3c;
-}
-
-.table-btn.edit:hover {
-    background: #2e7d32;
-}
-
-.table-btn.delete {
-    background: #d32f2f;
-}
-
-.table-btn.delete:hover {
-    background: #b71c1c;
-}
-
-/* Ensure form button matches <a> buttons */
-.table-btn.delete:focus {
-    outline: none;
+.librarian-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
 }
 
 /* -----------------------
-   Search Bar Styles
+   TITLE & SUBTITLE
+-------------------------*/
+.librarian-title {
+    font-size: 42px;
+    text-align: center;
+    color: #0c5647;
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px rgba(26, 188, 156, 0.7);
+}
+
+.librarian-subtitle {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #e0f7f4;
+}
+
+/* -----------------------
+   SEARCH BAR - GLASS
 -------------------------*/
 .search-bar {
     display: flex;
-    gap: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    gap: 12px;
     flex-wrap: wrap;
+    margin-bottom: 30px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
-.search-bar input[type="text"] {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
+.search-bar input,
 .search-bar select {
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    min-width: 150px;
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    outline: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.search-bar input:focus,
+.search-bar select:focus {
+    background: rgba(26, 188, 156, 0.15);
+    box-shadow: 0 0 10px #1abc9c;
 }
 
 .search-bar button {
-    padding: 10px 18px;
-    background: #1976d2;
-    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
     border: none;
-    border-radius: 4px;
+    background: #1abc9c;
+    color: #fff;
+    font-weight: bold;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: 0.3s;
 }
 
 .search-bar button:hover {
-    background: #1565c0;
+    background: #16a085;
+    transform: scale(1.05);
 }
 
 /* -----------------------
-   Responsive
+   BOOK GRID
 -------------------------*/
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* -----------------------
+   BOOK CARD
+-------------------------*/
+.book-card {
+    position: relative;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    background: rgba(26, 188, 156, 0.12);
+}
+
+/* Book ID in top corner */
+.book-id {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #1abc9c;
+    text-shadow: 0 0 4px #16a085;
+}
+
+/* Book Title */
+.book-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+/* Book Info */
+.book-info {
+    font-size: 14px;
+    margin: 4px 0;
+    color: #f0f0f0;
+}
+
+.book-info span.label {
+    font-weight: bold;
+    color: #0d5b4b;
+}
+
+/* Action buttons */
+.book-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-top: 15px;
+}
+
+.table-btn {
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.table-btn.view {
+    background: rgba(26,188,156,0.7);
+    color: #fff;
+}
+
+.table-btn.edit {
+    background: rgba(52,152,219,0.7);
+    color: #fff;
+}
+
+.table-btn.delete {
+    background: rgba(231,76,60,0.7);
+    color: #fff;
+}
+
+.table-btn:hover {
+    transform: scale(1.05);
+}
+
+.table-btn.view:hover { background: rgba(26,188,156,0.9); }
+.table-btn.edit:hover { background: rgba(52,152,219,0.9); }
+.table-btn.delete:hover { background: rgba(231,76,60,0.9); }
+
+/* No books message */
+.no-books {
+    text-align: center;
+    color: #ccc;
+    padding: 20px;
+}
+
+/* Responsive */
 @media screen and (max-width: 768px) {
-    .search-bar {
-        flex-direction: column;
+    .search-bar { flex-direction: column; }
+    .search-bar input, .search-bar select, .search-bar button { width: 100%; }
+    .books-grid { grid-template-columns: 1fr; }
+}
+
+
+
+/* ==============================
+   EDIT BOOK / MANUSCRIPT FORM
+================================= */
+
+/* Form container - glass effect */
+.edit-book-form {
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+}
+
+.edit-book-form:hover {
+    background: rgba(26, 188, 156, 0.12);
+}
+
+/* Form Title */
+.edit-book-form h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 0 0 6px rgba(26, 188, 156, 0.7);
+}
+
+/* Form Labels */
+.edit-book-form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #08473b;
+    font-size: 14px;
+}
+
+/* Inputs & File */
+.edit-book-form input[type="text"],
+.edit-book-form input[type="number"],
+.edit-book-form input[type="file"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 6px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    outline: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.edit-book-form input[type="text"]:focus,
+.edit-book-form input[type="number"]:focus,
+.edit-book-form input[type="file"]:focus {
+    background: rgba(26, 188, 156, 0.15);
+    box-shadow: 0 0 10px #1abc9c;
+}
+
+/* Submit button */
+.edit-book-form button[type="submit"] {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: #1abc9c;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.edit-book-form button[type="submit"]:hover {
+    background: #16a085;
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .edit-book-form {
+        padding: 20px;
     }
-    
-    .search-bar input[type="text"], .search-bar select, .search-bar button {
-        width: 100%;
+
+    .edit-book-form button[type="submit"] {
+        font-size: 15px;
     }
-    
-    .table-btn {
-        margin-bottom: 6px;
+}
+
+
+/* ==============================
+   ADD BOOK / MANUSCRIPT FORM
+================================= */
+
+/* Form container - glass effect */
+.add-book-form {
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+}
+
+.add-book-form:hover {
+    background: rgba(26, 188, 156, 0.12);
+}
+
+/* Form Title */
+.add-book-form h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 0 0 6px rgba(26, 188, 156, 0.7);
+}
+
+/* Form Labels */
+.add-book-form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #0c5445;
+    font-size: 14px;
+}
+
+/* Inputs & File */
+.add-book-form input[type="text"],
+.add-book-form input[type="number"],
+.add-book-form input[type="file"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 6px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    outline: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.add-book-form input[type="text"]:focus,
+.add-book-form input[type="number"]:focus,
+.add-book-form input[type="file"]:focus {
+    background: rgba(26, 188, 156, 0.15);
+    box-shadow: 0 0 10px #1abc9c;
+}
+
+/* Submit button */
+.add-book-form button[type="submit"] {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: #1abc9c;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add-book-form button[type="submit"]:hover {
+    background: #16a085;
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .add-book-form {
+        padding: 20px;
+    }
+
+    .add-book-form button[type="submit"] {
+        font-size: 15px;
     }
 }

@@ -5,30 +5,9 @@
 
     <h1 class="settings-title">Settings</h1>
 
-    <!-- Profile Section -->
-    <div class="settings-card">
-        <h2>Profile</h2>
-        <div class="setting-row">
-            <span>Name</span>
-            <span class="setting-value">{{ name }}</span>
-        </div>
-        <div class="setting-row">
-            <span>Email</span>
-            <span class="setting-value">{{ email }}</span>
-        </div>
-        <div class="setting-row">
-            <span>Role</span>
-            <span class="setting-value">{{ role }}</span>
-        </div>
-        <div class="setting-row action">
-            <button class="settings-btn">Edit Profile</button>
-        </div>
-    </div>
-
     <!-- Display Section -->
     <div class="settings-card">
         <h2>Display</h2>
-
         <div class="setting-row">
             <span>Theme</span>
             <select class="settings-select">
@@ -37,7 +16,6 @@
                 <option>System Default</option>
             </select>
         </div>
-
         <div class="setting-row">
             <span>Text Size</span>
             <select class="settings-select">
@@ -68,9 +46,9 @@
     <!-- Account Section -->
     <div class="settings-card">
         <h2>Account</h2>
-        <div class="setting-row action">
-            <button class="settings-btn danger">Delete Account</button>
-        </div>
+            <form action="{{ url_for('profile.delete_account') }}" method="POST" onsubmit="return confirm('Are you sure you want to delete your account?');">
+                <button type="submit" class="delete-account-btn">Delete Account</button>
+            </form>
     </div>
 
 </div>

@@ -1,28 +1,29 @@
 {% extends "librarian/librarian_layout.html" %}
 
 {% block content %}
-<h2>Edit Manuscript</h2>
+<div class="edit-book-form">
+    <h2>Edit Manuscript</h2>
 
-<form method="POST" enctype="multipart/form-data">
-    <label>Title:</label>
-    <input type="text" name="title" value="{{ book.title }}" required>
+    <form method="POST" enctype="multipart/form-data">
+        <label>Title:</label>
+        <input type="text" name="title" value="{{ book.title }}" required>
 
-    <label>Author:</label>
-    <input type="text" name="author" value="{{ book.author }}" required>
+        <label>Author:</label>
+        <input type="text" name="author" value="{{ book.author }}" required>
 
-    <label>University:</label>
-    <input type="text" name="university" value="{{ book.university }}" required>
+        <label>University:</label>
+        <input type="text" name="university" value="{{ book.university }}" required>
 
-    <label>Department:</label>
-    <input type="text" name="department" value="{{ book.department }}" required>
+        <label>Department:</label>
+        <input type="text" name="department" value="{{ book.department }}" required>
 
-    <label>Year Published:</label>
-    <input type="number" name="year_published" value="{{ book.year_published }}" required>
+        <label>Year Published:</label>
+        <input type="number" name="year_published" value="{{ book.year_published }}" required>
 
-    <label>PDF File (leave blank to keep current):</label>
-    <input type="file" name="pdf_file">
+        <label>PDF File (leave blank to keep current):</label>
+        <input type="file" name="pdf_file">
 
-    <button type="submit">Update Book</button>
-</form>
-
+        <button type="submit">Update Book</button>
+    </form>
+</div>
 {% endblock %}

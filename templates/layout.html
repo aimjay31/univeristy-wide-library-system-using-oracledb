@@ -5,12 +5,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='settings.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='edit_profile.css') }}">
 
 </head>
 <body>
-
-<!-- Firefly Orbs Background -->
-<div id="orbs-bg"></div>
 
 <div class="sidebar">
     <h2>UniArchive</h2>
@@ -22,29 +20,13 @@
     <div class="bottom-links">
         <a href="/profile" class="{% if request.path == '/profile' %}active{% endif %}">Profile</a>
         <a href="/settings" class="{% if request.path == '/settings' %}active{% endif %}">Settings</a>
-        <a href="{{ url_for('auth.logout') }}" class="exit">Logout</a>
+       <!--<a href="{{ url_for('auth.logout') }}" class="exit">Logout</a> --> 
     </div>
 </div>
 
 <div class="main">
     {% block content %}{% endblock %}
 </div>
-
-<script>
-    // Generate many floating orbs dynamically
-    const orbsContainer = document.getElementById('orbs-bg');
-    for (let i = 0; i < 40; i++) {
-        const orb = document.createElement('span');
-        orb.className = 'orb';
-        orb.style.top = Math.random() * 100 + 'vh';
-        orb.style.left = Math.random() * 100 + 'vw';
-        orb.style.width = 4 + Math.random() * 12 + 'px';
-        orb.style.height = orb.style.width;
-        orb.style.animationDuration = 10 + Math.random() * 20 + 's';
-        orb.style.background = `radial-gradient(circle, rgba(${Math.floor(100+Math.random()*155)}, ${Math.floor(100+Math.random()*155)}, ${Math.floor(100+Math.random()*155)}, ${0.3+Math.random()*0.4}) 0%, transparent 70%)`;
-        orbsContainer.appendChild(orb);
-    }
-</script>
 
 </body>
 </html>

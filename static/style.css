@@ -1,51 +1,34 @@
-/* --- Global Styles --- */
+/* ===============================
+   GLOBAL STYLES
+================================ */
 body {
     margin: 0;
     font-family: 'Segoe UI', Roboto, sans-serif;
-    color: #eee;
+    color: #00321b;
     display: flex;
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
-    background: #1a1f2b;
+
+    /* Flask static background image */
+    background: url("../static/background.png") no-repeat center center fixed;
+    background-size: cover;
 }
 
-/* --- Firefly Orbs Background --- */
-#orbs-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-}
-
-.orb {
-    position: absolute;
-    border-radius: 50%;
-    animation: floatOrb ease-in-out infinite;
-}
-
-@keyframes floatOrb {
-    0% { transform: translate(0,0) scale(1); opacity: 0.6; }
-    25% { transform: translate(15px,-20px) scale(1.2); opacity: 0.8; }
-    50% { transform: translate(-10px,10px) scale(0.9); opacity: 0.5; }
-    75% { transform: translate(20px,-15px) scale(10.1); opacity: 0.4; }
-    100% { transform: translate(0,0) scale(1); opacity: 0.6; }
-}
-
-/* --- Sidebar --- */
+/* ===============================
+   SIDEBAR
+================================ */
 .sidebar {
     width: 220px;
-    background: #1a1f2b;
-    color: #fff;
     height: 100vh;
     padding: 20px;
     box-sizing: border-box;
     position: fixed;
-    box-shadow: 4px 0 12px rgba(0,0,0,0.3);
     z-index: 2;
+
+    background: rgba(26, 31, 43, 0.5);
+    color: #fff;
+    box-shadow: 4px 0 10px rgba(0, 82, 66, 0.5);
 }
 
 .sidebar h2 {
@@ -60,23 +43,21 @@ body {
     display: block;
     color: #fff;
     text-decoration: none;
-    padding: 12px 0;
-    margin: 5px 0;
-    transition: 0.3s;
+    padding: 12px 14px;
+    margin: 6px 0;
     border-radius: 6px;
     position: relative;
+    transition: 0.3s;
 }
 
 .sidebar a::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0;
+    inset: 0;
     width: 0%;
-    height: 100%;
     background: #1abc9c;
     border-radius: 6px;
-    transition: 0.3s;
+    transition: width 0.3s;
     z-index: -1;
 }
 
@@ -93,7 +74,6 @@ body {
     background: #34495e;
     font-weight: bold;
     border-left: 4px solid #1abc9c;
-    padding-left: 6px;
 }
 
 .bottom-links {
@@ -106,35 +86,36 @@ body {
     color: #ff6b6b;
 }
 
-/* --- Main Content --- */
+/* ===============================
+   MAIN CONTENT
+================================ */
 .main {
     margin-left: 220px;
     padding: 30px;
     width: calc(100% - 220px);
     min-height: 100vh;
-    backdrop-filter: blur(1px);
-    z-index: 1;
     position: relative;
-    overflow: hidden;
-    transition: background 0.5s ease;
+    z-index: 1;
 }
 
-/* --- Table --- */
+/* ===============================
+   TABLE STYLES
+================================ */
 table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    background: rgba(255,255,255,0.05);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+
+    background: rgba(255,255,255,0.08);
     backdrop-filter: blur(8px);
-    transition: transform 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
 }
 
 th {
     background: linear-gradient(90deg, #1abc9c, #16a085);
-    color: white;
+    color: #00321b;
     padding: 16px;
     font-size: 14px;
     text-transform: uppercase;
@@ -150,14 +131,15 @@ td {
 
 tr:hover td {
     background: rgba(26, 188, 156, 0.2);
-    transform: scale(1.02);
 }
 
 tr:nth-child(even) td {
     background: rgba(255,255,255,0.05);
 }
 
-/* --- Search Box --- */
+/* ===============================
+   SEARCH BOX
+================================ */
 .search-box {
     display: flex;
     gap: 12px;
@@ -172,7 +154,8 @@ tr:nth-child(even) td {
     border-radius: 10px;
     font-size: 14px;
     outline: none;
-    background: rgba(255,255,255,0.1);
+
+    background: rgba(255,255,255,0.12);
     color: #fff;
     transition: 0.3s;
 }
@@ -181,7 +164,7 @@ tr:nth-child(even) td {
 .search-box input:hover,
 .search-box select:focus,
 .search-box input:focus {
-    background: rgba(26, 188, 156, 0.2);
+    background: rgba(26, 188, 156, 0.25);
     box-shadow: 0 0 10px #1abc9c;
 }
 
@@ -193,22 +176,24 @@ tr:nth-child(even) td {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: 0.3s;
     font-weight: bold;
+    transition: 0.3s;
+
     box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
 
 .search-box button:hover {
     background: #16a085;
     transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
 }
 
 .search-box button:active {
     transform: scale(0.97);
 }
 
-/* --- Table Action Buttons --- */
+/* ===============================
+   TABLE ACTION BUTTONS
+================================ */
 td button {
     padding: 6px 12px;
     border-radius: 8px;
@@ -222,90 +207,95 @@ td button {
 
 td button:hover {
     background: #16a085;
-    transform: translateY(-1px) scale(1.05);
+    transform: scale(1.05);
     box-shadow: 0 4px 12px #1abc9c80;
 }
 
-/* --- Profile Page --- */
-.profile-container {
+option {
+    background: #094335;
+    color: #fff;
+    border-radius: 20px;
+}
+
+
+
+/* ===============================
+   ADD TO LIBRARY BUTTON (SVG)
+================================ */
+.add-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 22px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+
+    background: #0f6c5a;
+    color: #1a1f2b;
+
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    box-shadow: 0 6px 18px rgba(26,188,156,0.5);
+}
+
+/* SVG icon */
+.add-btn img {
+    width: 20px;
+    height: 20px;
+    filter: invert(15%);
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect */
+.add-btn:hover {
+    background: #16a085;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 26px rgba(26,188,156,0.7);
+}
+
+/* Rotate icon on hover */
+.add-btn:hover img {
+    transform: rotate(90deg);
+}
+
+/* Click effect */
+.add-btn:active {
+    transform: scale(0.96);
+}
+
+
+/* Loading overlay covering the whole page */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 188, 156, 0.2); /* semi-transparent turquoise */
+    backdrop-filter: blur(8px);           /* glass effect */
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding: 40px 0;
+    align-items: center;
+    z-index: 9999;
 }
 
-.profile-card {
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    padding: 30px;
-    width: 360px;
-    box-shadow: 0 12px 36px rgba(0,0,0,0.5);
-    text-align: center;
-    position: relative;
-}
-
-.profile-picture img {
-    width: 120px;
-    height: 120px;
+/* Spinner */
+.spinner {
+    width: 80px;
+    height: 80px;
+    border: 8px solid rgba(255, 255, 255, 0.3);
+    border-top: 8px solid #1abc9c;  /* colored part */
     border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #1abc9c;
-    transition: transform 0.3s;
+    animation: spin 1s linear infinite;
 }
 
-.profile-picture img:hover {
-    transform: scale(1.1);
-}
-
-.profile-name {
-    margin-top: 15px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #1abc9c;
-}
-
-.profile-role {
-    font-size: 16px;
-    color: #16a085;
-    margin-bottom: 20px;
-}
-
-.profile-details {
-    text-align: left;
-    margin-top: 20px;
-}
-
-.profile-details .detail-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 12px;
-}
-
-.profile-details .label {
-    font-weight: bold;
-    color: #eee;
-}
-
-.profile-details .value {
-    color: #ddd;
-}
-
-.logout-btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: #e74c3c;
-    color: #fff;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.logout-btn:hover {
-    background: #c0392b;
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(255,0,0,0.4);
+/* Spinner animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
