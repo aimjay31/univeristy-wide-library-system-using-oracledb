@@ -107,3 +107,45 @@ def add():
         return redirect(url_for("books.index"))
 
     return render_template("add.html")
+
+
+from flask import send_file
+from io import BytesIO
+
+@bp.route("/view/<int:book_id>")
+def view(book_id):
+    source = request.args.get("source", "local")  # local | remote
+    conn = get_connection() if source == "local" else get_remote_connection()
+    cursor = conn.cursor()
+
+    try:
+        cursor.execute(
+            """
+            SELECT pdf_file, title
+            FROM university_books
+            WHERE book_id = :1
+            """,
+            (book_id,)
+        )
+
+        row = cursor.fetchone()
+
+        if not row or not row[0]:
+            flash("PDF not found.", "error")
+            return redirect(url_for("books.index"))
+
+        pdf_blob = row[0].read()   # IMPORTANT for Oracle BLOB
+        title = row[1]
+
+        return send_file(
+            BytesIO(pdf_blob),
+            mimetype="application/pdf",
+            as_attachment=False,
+            download_name=f"{title}.pdf"
+        )
+
+    finally:
+        cursor.close()
+        conn.close()
+
+

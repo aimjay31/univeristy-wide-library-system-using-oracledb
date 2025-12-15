@@ -60,27 +60,34 @@
         </tr>
     </thead>
     <tbody>
-        {% if books %}
-            {% for b in books %}
-            <tr>
-                <td>{{ b.title }}</td>
-                <td>{{ b.author }}</td>
-                <td>{{ b.university }}</td>
-                <td>{{ b.department }}</td>
-                <td>{{ b.year_published }}</td>
-                <td>{{ b.source if b.source else 'Local/Remote' }}</td>
-                <td>
-                    <form method="POST" action="{{ url_for('user_library.add_to_library', book_id=b.book_id) }}">
-                        <input type="hidden" name="source" value="{{ b.source|default('Local') }}">
+            {% if books %}
+                {% for b in books %}
+                <tr
+                    onclick="window.open(
+                        '{{ url_for('books.view', book_id=b.book_id, source=b.source|lower) }}',
+                        '_blank'
+                    );"
+                    style="cursor:pointer;"
+                >
+                    <td>{{ b.title }}</td>
+                    <td>{{ b.author }}</td>
+                    <td>{{ b.university }}</td>
+                    <td>{{ b.department }}</td>
+                    <td>{{ b.year_published }}</td>
+                    <td>{{ b.source if b.source else 'Local/Remote' }}</td>
+
+                    <!-- Prevent row click when clicking button -->
+                    <td onclick="event.stopPropagation();">
+                        <form method="POST" action="{{ url_for('user_library.add_to_library', book_id=b.book_id) }}">
+                            <input type="hidden" name="source" value="{{ b.source|default('Local') }}">
                             <button type="submit" class="add-btn">
                                 <img src="{{ url_for('static', filename='button.svg') }}" alt="Add To Library">
                             </button>
-                    </form>
-
-                </td>
-            </tr>
-            {% endfor %}
-        {% else %}
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
             <tr>
                 <td colspan="8" style="text-align:center;">No books found.</td>
             </tr>
